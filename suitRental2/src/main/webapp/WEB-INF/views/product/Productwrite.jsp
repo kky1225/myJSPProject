@@ -16,8 +16,6 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
-
 </div>
 </body>
 </html>
