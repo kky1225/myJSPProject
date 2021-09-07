@@ -128,7 +128,7 @@ public class MemberDAO {
 	
 	// 대여 정보 변경
 	
-	// 회원 등급(auth) 변경 -> 대여금지(2)로 변경하는 메소드 0
+	// 회원 등급(auth) 변경 -> 대여금지(2)로 변경하는 메소드
 	// 0으로 바꾸는건 deleteMember(int mem_num)에서 실행
 	public void updateAuth(int mem_num) throws Exception{
 		Connection conn = null;
