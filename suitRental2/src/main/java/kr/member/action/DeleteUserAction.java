@@ -13,10 +13,10 @@ public class DeleteUserAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// È¸¿øÁ¦ ¼­ºñ½º
+		// íšŒì›ì œ ì„œë¹„ìŠ¤
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num == null) {	// ·Î±×ÀÎÀÌ ¾ÈµÈ °æ¿ì
+		if(user_num == null) {	// ë¡œê·¸ì¸ì´ ì•ˆëœ ê²½ìš°
 			return "redirect:/member/loginForm.do";
 		}
 		
@@ -25,7 +25,7 @@ public class DeleteUserAction implements Action{
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
 		
-		// ÇöÀç ·Î±×ÀÎ ÇÑ ¾ÆÀÌµğ
+		// í˜„ì¬ ë¡œê·¸ì¸ í•œ ì•„ì´ë””
 		String user_id = (String)session.getAttribute("user_id");
 		
 		MemberDAO dao = MemberDAO.getInstance();

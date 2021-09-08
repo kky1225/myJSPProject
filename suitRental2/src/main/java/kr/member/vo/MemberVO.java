@@ -1,4 +1,4 @@
-// 2021-09-07 ¼­ÁØÈ­
+// 2021-09-07 ì„œì¤€í™”
 package kr.member.vo;
 
 import java.sql.Date;
@@ -22,7 +22,7 @@ public class MemberVO {
 	private Date modify_date;
 	
 	public boolean isCheckedPassword(String userPasswd) {
-		// È¸¿ø µî±Þ(auth) : È¸¿øµî±Þ : 0(Å»Åð) ´ë¿©±ÝÁöÈ¸¿ø(1) È¸¿ø(2) °ü¸®ÀÚ(3)
+		// íšŒì› ë“±ê¸‰(auth) : 0(íƒˆí‡´íšŒì›), 1(ì •ì§€íšŒì›), 2(ì¼ë°˜íšŒì›), 3(ê´€ë¦¬ìž)
 		if(auth > 1 && passwd.equals(userPasswd)) {
 			return true;
 		}

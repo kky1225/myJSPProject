@@ -13,35 +13,35 @@ public class ModifyPasswordAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// È¸¿øÁ¦ ¼­ºñ½º
+		// íšŒì›ì œ ì„œë¹„ìŠ¤
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num == null) {	// ·Î±×ÀÎÀÌ ¾ÈµÈ °æ¿ì
+		if(user_num == null) {	// ë¡œê·¸ì¸ì´ ì•ˆëœ ê²½ìš°
 			return "redirect:/member/loginForm.do";
 		}
-		// Àü¼ÛµÈ µ¥ÀÌÅÍ ÀÎÄÚµù
+		// ì „ì†¡ëœ ë°ì´í„° ì¸ì½”ë”©
 		request.setCharacterEncoding("utf-8");
 		
-		// Àü¼ÛµÈ µ¥ÀÌÅÍ ¹İÈ¯
+		// ì „ì†¡ëœ ë°ì´í„° ë°˜í™˜
 		String id = request.getParameter("id");
-		String origin_passwd = request.getParameter("origin_passwd");	// ÇöÀçºñ¹Ğ¹øÈ£
-		String passwd = request.getParameter("passwd");					// »õ ºñ¹Ğ¹øÈ£
+		String origin_passwd = request.getParameter("origin_passwd");	// í˜„ì¬ë¹„ë°€ë²ˆí˜¸
+		String passwd = request.getParameter("passwd");					// ìƒˆ ë¹„ë°€ë²ˆí˜¸
 				
-		// ÇöÀç ·Î±×ÀÎ ÇÑ ¾ÆÀÌµğ
+		// í˜„ì¬ ë¡œê·¸ì¸ í•œ ì•„ì´ë””
 		String user_id = (String)session.getAttribute("user_id");
 					
 		MemberDAO dao = MemberDAO.getInstance();
 		MemberVO member = dao.checkMember(id);
 		boolean check = false;
 				
-		//»ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ID°¡ Á¸ÀçÇÏ°í ·Î±×ÀÎ ÇÑ ¾ÆÀÌµğ¿Í ÀÏÄ¡ÇÏ´ÂÁö Ã¼Å© 
+		//ì‚¬ìš©ìê°€ ì…ë ¥í•œ IDê°€ ì¡´ì¬í•˜ê³  ë¡œê·¸ì¸ í•œ ì•„ì´ë””ì™€ ì¼ì¹˜í•˜ëŠ”ì§€ ì²´í¬ 
 		if(member != null && id.equals(user_id)) {
-			// ºñ¹Ğ¹øÈ£ ÀÏÄ¡ ¿©ºÎ Ã¼Å©
+			// ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ ì—¬ë¶€ ì²´í¬
 			check = member.isCheckedPassword(origin_passwd);
 		}
 				
-		if(check) {	// ÀÎÁõ ¼º°ø
-			// ºñ¹Ğ¹øÈ£ º¯°æ
+		if(check) {	// ì¸ì¦ ì„±ê³µ
+			// ë¹„ë°€ë²ˆí˜¸ ë³€ê²½
 			dao.updatePassword(passwd, user_num);
 		}
 				

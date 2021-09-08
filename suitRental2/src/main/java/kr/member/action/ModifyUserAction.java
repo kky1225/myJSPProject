@@ -16,10 +16,10 @@ public class ModifyUserAction implements Action{
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		if(user_num == null) {	// ·Î±×ÀÎÀÌ ¾ÈµÈ °æ¿ì
+		if(user_num == null) {	// ë¡œê·¸ì¸ì´ ì•ˆëœ ê²½ìš°
 			return "redirect:/member/loginForm.do";
 		}
-		// ·Î±×ÀÎ µÈ °æ¿ì
+		// ë¡œê·¸ì¸ ëœ ê²½ìš°
 		request.setCharacterEncoding("utf-8");
 		
 		MemberVO member = new MemberVO();

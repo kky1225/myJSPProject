@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
 
-// 2021-09-06 ¼­ÁØÈ­
+// 2021-09-06 ï¿½ï¿½ï¿½ï¿½È­
 public class MemberDAO {
-	// ½Ì±ÛÅæ ÆÐÅÏ
+	// ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private static MemberDAO instance = new MemberDAO();
 	
 	public static MemberDAO getInstance() {
@@ -17,24 +17,24 @@ public class MemberDAO {
 	
 	private MemberDAO() {}
 	
-	// È¸¿ø Á¤º¸ ¼öÁ¤
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void updateMember(MemberVO member) throws Exception{
-		// ¼öÁ¤ °¡´É : name,phone,email,zipcode,address1,address2,modify_date=SYSDATE
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : name,phone,email,zipcode,address1,address2,modify_date=SYSDATE
 		// PK : mem_num
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
-			// Ä¿³Ø¼ÇÇ®·ÎºÎÅÍ Ä¿³Ø¼ÇÀ» ÇÒ´ç
+			// Ä¿ï¿½Ø¼ï¿½Ç®ï¿½Îºï¿½ï¿½ï¿½ Ä¿ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
 			conn = DBUtil.getConnection();
-			// ¼öÁ¤ °¡´É : name,phone,email,zipcode,address1,address2,modify_date=SYSDATE
-			// SQL¹® ÀÛ¼º
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : name,phone,email,zipcode,address1,address2,modify_date=SYSDATE
+			// SQLï¿½ï¿½ ï¿½Û¼ï¿½
 			sql = "update xmember_detail set name=?,phone=?,email=?,zipcode=?,address1=?,address2=?,"
 					+ "modify_date=SYSDATE where mem_num=?";
-			// PreparedStatement °´Ã¼ »ý¼º
+			// PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pstmt = conn.prepareStatement(sql);
-			// ?¿¡ µ¥ÀÌÅÍ ¹ÙÀÎµù
+			// ?ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 			pstmt.setString(1,member.getName());
 			pstmt.setString(2,member.getPhone());
 			pstmt.setString(3,member.getEmail());
@@ -43,48 +43,48 @@ public class MemberDAO {
 			pstmt.setString(6,member.getAddress2());
 			pstmt.setInt(7, member.getMem_num());
 			
-			// SQL¹® ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			pstmt.executeUpdate();
 			
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			// ÀÚ¿ø Á¤¸®
+			// ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	
-	// ºñ¹Ð¹øÈ£ ¼öÁ¤
+	// ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½
 	public void updatePassword(String passwd, int mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
-			// Ä¿³Ø¼ÇÇ®·ÎºÎÅÍ Ä¿³Ø¼ÇÀ» ÇÒ´ç
+			// Ä¿ï¿½Ø¼ï¿½Ç®ï¿½Îºï¿½ï¿½ï¿½ Ä¿ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
 			conn = DBUtil.getConnection();
 			
-			// SQL¹® ÀÛ¼º
+			// SQLï¿½ï¿½ ï¿½Û¼ï¿½
 			sql = "update xmember_detail set passwd=? where mem_num=?";
 			
-			// PreparedStatement °´Ã¼¸¦ »ý¼º
+			// PreparedStatement ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			pstmt = conn.prepareStatement(sql);
-			// ?¿¡ µ¥ÀÌÅÍ ¹ÙÀÎµù
-			pstmt.setString(1, passwd);	// »õ ºñ¹Ð¹øÈ£
-			pstmt.setInt(2, mem_num);	// È¸¿ø¹øÈ£
+			// ?ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
+			pstmt.setString(1, passwd);	// ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£
+			pstmt.setInt(2, mem_num);	// È¸ï¿½ï¿½ï¿½ï¿½È£
 			
-			// SQL¹® ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			pstmt.executeUpdate();
 			
 		}catch (Exception e) {
 			throw new Exception(e);
 		}finally {
-			// ÀÚ¿ø Á¤¸®
+			// ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	
-	// È¸¿ø Å»Åð(È¸¿ø Á¤º¸ »èÁ¦)
+	// È¸ï¿½ï¿½ Å»ï¿½ï¿½(È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	public void deleteMember(int mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -92,57 +92,57 @@ public class MemberDAO {
 		String sql = null;
 		
 		try {
-			// Ä¿³Ø¼ÇÇ®·ÎºÎÅÍ Ä¿³Ø¼Ç ÇÒ´ç
+			// Ä¿ï¿½Ø¼ï¿½Ç®ï¿½Îºï¿½ï¿½ï¿½ Ä¿ï¿½Ø¼ï¿½ ï¿½Ò´ï¿½
 			conn = DBUtil.getConnection();
-			// ¿ÀÅäÄ¿¹Ô ÇØÁ¦
+			// ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			conn.setAutoCommit(false);
 			
-			// SQL¹® ÀÛ¼º zmemberÀÇ auth °ª º¯°æ
+			// SQLï¿½ï¿½ ï¿½Û¼ï¿½ zmemberï¿½ï¿½ auth ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			sql = "update xmember set auth=0 where mem_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			pstmt.executeUpdate();
 			
-			// SQL¹® ÀÛ¼º zmember_detailÀÇ ·¹ÄÚµå »èÁ¦
+			// SQLï¿½ï¿½ ï¿½Û¼ï¿½ zmember_detailï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 			sql = "delete from xmember_detail where mem_num=?";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, mem_num);
 			pstmt2.executeUpdate();
 			
-			// ¸ðµç SQL¹®ÀÇ ½ÇÇàÀÌ ¼º°ø
+			// ï¿½ï¿½ï¿½ SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			conn.commit();
 		}catch (Exception e) {
-			// SQL ¹®ÀåÀÌ ÇÏ³ª¶óµµ ½ÇÆÐÇÏ¸é rollback;
+			// SQL ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ rollback;
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
-			// ÀÚ¿ø Á¤¸®
+			// ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 			DBUtil.executeClose(null, pstmt2, null);
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	
-	// ´ë¿© ¸ñ·Ï È£Ãâ
+	// ï¿½ë¿© ï¿½ï¿½ï¿½ È£ï¿½ï¿½
 	
-	// ´ë¿© Ãë¼Ò
+	// ï¿½ë¿© ï¿½ï¿½ï¿½
 	
-	// ´ë¿© Á¤º¸ º¯°æ
+	// ï¿½ë¿© ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
-	// È¸¿ø µî±Þ(auth) º¯°æ -> ´ë¿©±ÝÁö(2)·Î º¯°æÇÏ´Â ¸Þ¼Òµå
-	// 0À¸·Î ¹Ù²Ù´Â°Ç deleteMember(int mem_num)¿¡¼­ ½ÇÇà
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½(auth) ï¿½ï¿½ï¿½ï¿½ -> ï¿½ë¿©ï¿½ï¿½ï¿½ï¿½(2)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
+	// 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù´Â°ï¿½ deleteMember(int mem_num)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void updateAuth(int mem_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
-			// Ä¿³Ø¼ÇÇ®·ÎºÎÅÍ Ä¿³Ø¼ÇÀ» ÇÒ´ç
+			// Ä¿ï¿½Ø¼ï¿½Ç®ï¿½Îºï¿½ï¿½ï¿½ Ä¿ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
 			conn = DBUtil.getConnection();
-			// SQL¹® ÀÛ¼º
+			// SQLï¿½ï¿½ ï¿½Û¼ï¿½
 			sql = "update xmember set auth = 1 where mem_num=?";
-			// PreparedStatement °´Ã¼ »ý¼º
+			// PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pstmt = conn.prepareStatement(sql);
-			// ?¿¡ µ¥ÀÌÅÍ ¹ÙÀÎµù
+			// ?ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 			pstmt.setInt(1, mem_num);
 			
 			pstmt.executeUpdate();
@@ -150,7 +150,7 @@ public class MemberDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			// ÀÚ¿ø Á¤¸®
+			// ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
