@@ -1,4 +1,3 @@
-/*
 package kr.member.action;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +46,6 @@ public class DeleteUserAction implements Action{
 	}
 
 }
-*/
 
 
 

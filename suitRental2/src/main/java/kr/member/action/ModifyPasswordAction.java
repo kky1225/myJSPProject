@@ -1,4 +1,3 @@
-/*
 package kr.member.action;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,4 +51,3 @@ public class ModifyPasswordAction implements Action{
 	}
 
 }
-*/
